@@ -1,2 +1,3 @@
 # infra_actions
-Учебный проект для изучения работы GitHub Actions
+Учебный проект для изучения работы GitHub Actions\
+# изучаем workflow
