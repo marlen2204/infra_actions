@@ -1,22 +1,26 @@
-name: CI
+name: Django-app workflow
 
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push]
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@main
 
-    - name: run script
-      run: echo Hello, world
-    - name: run 2 script
+    - uses: actions/checkout@v2
+    - name: Set up Python
+
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+
+    - name: Install dependencies
+      run: | 
+        python -m pip install --upgrade pip 
+        pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
+        pip install -r requirements.txt 
+
+    - name: Test with flake8 and django tests
       run: |
-        echo Hello, world2
-        echo Hello, world3
+        python -m flake8
